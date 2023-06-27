@@ -28,12 +28,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const wallets = [
+const wallets: any = [
   new FewchaWallet(),
   new PetraWallet(),
   new BloctoWallet({
     network: network,
-    bloctoAppId: '84503da4-7d0f-4ced-b004-ecd81bfc333b',
+    bloctoAppId: "84503da4-7d0f-4ced-b004-ecd81bfc333b",
   }),
   new MartianWallet(),
   new SpikaWallet(),
@@ -50,7 +50,7 @@ function ErrorFallback({ error, resetErrorBoundary }: any) {
     </div>
   );
 }
-root.render(
+const Main = () => (
   <React.StrictMode>
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
@@ -61,4 +61,5 @@ root.render(
   </React.StrictMode>
 );
 
-reportWebVitals();
+
+export default Main;

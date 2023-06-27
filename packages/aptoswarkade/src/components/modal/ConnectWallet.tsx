@@ -59,7 +59,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
 
   const { connect, account, disconnect } = useWallet();
 
-  const aptosWalletNetwork = new WalletCore(aptosWallet);
+  // const aptosWalletNetwork = new WalletCore(aptosWallet);
 
   useEffect(() => {
     console.log('SpikaWalletName', SpikaWalletName);
@@ -114,7 +114,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
     <CustomModal show={showModal} handleClose={() => {}}>
       <div className='modal-border connect-wallet-container mint-modal'>
         <div className='connet-wallet-header'>
-          <h1 className='text-color connet-wallet-title'>Select a Wallet</h1>
+          <h1 className='text-color connet-wallet-title'>Select a Walletss</h1>
           <div
             onClick={() => {
               handleClose();
@@ -181,7 +181,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
               {AllowededWallets.martian}
             </span>
           </div>
-          <div
+          {/* <div
             className={`wallet-list-item d-flex  justify-content-start  align-items-center ${
               selectedWallet === AllowededWallets.fewcha
                 ? 'wallet-list-item-active'
@@ -212,7 +212,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
             <span className='text-color wallet-text'>
               {AllowededWallets.spika}
             </span>
-          </div>
+          </div> */}
         </div>
         <div
           className='d-flex justify-content-center mt-10'
