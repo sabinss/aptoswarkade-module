@@ -1,0 +1,3 @@
+### Steps:
+- navigate to packages and yarn install
+- navigate to apps/aptosmodule and yarn install and yarn start
