@@ -1,16 +1,16 @@
-import { CustomModal } from './CustomModal';
-import { AiOutlineClose } from 'react-icons/ai';
-import { useContext, useEffect, useState } from 'react';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
+import {CustomModal} from './CustomModal';
+import {AiOutlineClose} from 'react-icons/ai';
+import {useContext, useEffect, useState} from 'react';
+import {useWallet} from '@aptos-labs/wallet-adapter-react';
 import {
   WalletCore,
   WalletName,
   NetworkName,
 } from '@aptos-labs/wallet-adapter-core';
-import { FewchaWallet, FewchaWalletName } from 'fewcha-plugin-wallet-adapter';
-import { Context as AuthContext } from '../../context';
+import {FewchaWallet, FewchaWalletName} from 'fewcha-plugin-wallet-adapter';
+import {Context as AuthContext} from '../../context';
 // wallets
-import { PetraWallet, PetraWalletName } from 'petra-plugin-wallet-adapter';
+import {PetraWallet, PetraWalletName} from 'petra-plugin-wallet-adapter';
 import {
   BloctoWallet,
   BloctoWalletName,
@@ -19,7 +19,8 @@ import {
   MartianWallet,
   MartianWalletName,
 } from '@martianwallet/aptos-wallet-adapter';
-import { SpikaWalletName } from '@spika/aptos-plugin';
+import {SpikaWalletName} from '@spika/aptos-plugin';
+import {PropsContext} from '../../context/propsContext';
 // import {
 //   AptosWalletName,
 //   useWallet as manahipoUseWallet,
@@ -38,13 +39,15 @@ enum AllowededWallets {
   spika = 'Spika',
 }
 
-export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
+export const ConnectWallet = ({handleClose, showModal}: IConnectWallet) => {
   // const {
   //   connect: manahipoConnect,
   //   disconnect: manahipoDisconnect,
   //   connected,
   // } = useWallet();
-  const { state, connetAptosWallet, setConnectedWalletName, setLoading } =
+  const {setConnectModalOpen} = useContext<any>(PropsContext);
+
+  const {state, connetAptosWallet, setConnectedWalletName, setLoading} =
     useContext<any>(AuthContext);
   const [selectedWallet, setSelectedWallet] = useState('');
 
@@ -57,7 +60,7 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
     new MartianWallet(),
   ];
 
-  const { connect, account, disconnect } = useWallet();
+  const {connect, account, disconnect} = useWallet();
 
   // const aptosWalletNetwork = new WalletCore(aptosWallet);
 
@@ -97,7 +100,8 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
         openSelectedWallet = SpikaWalletName;
       }
 
-      connect(openSelectedWallet);
+      // connect(openSelectedWallet);
+      setConnectModalOpen(openSelectedWallet);
       // const wallet = new WalletCore(wallets);
       connetAptosWallet(account, () => {
         setLoading(false);
@@ -112,25 +116,25 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
 
   return (
     <CustomModal show={showModal} handleClose={() => {}}>
-      <div className='modal-border connect-wallet-container mint-modal'>
-        <div className='connet-wallet-header'>
-          <h1 className='text-color connet-wallet-title'>Select a Walletss</h1>
+      <div className="modal-border connect-wallet-container mint-modal">
+        <div className="connet-wallet-header">
+          <h1 className="text-color connet-wallet-title">Select a Walletss</h1>
           <div
             onClick={() => {
               handleClose();
               disconnect();
             }}
-            className='close'
+            className="close"
           >
             <AiOutlineClose
-              style={{ color: '#E7D08C', fontWeight: 'bold', fontSize: 20 }}
+              style={{color: '#E7D08C', fontWeight: 'bold', fontSize: 20}}
             />
           </div>
         </div>
 
         <div
-          className='wallet-list'
-          style={{ overflowY: 'scroll', height: '400' }}
+          className="wallet-list"
+          style={{overflowY: 'scroll', height: '400'}}
         >
           <div
             className={`wallet-list-item d-flex  justify-content-start  align-items-center ${
@@ -141,10 +145,10 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
             onClick={() => handleSelectWallet(AllowededWallets.petra)}
           >
             <img
-              className='wallet-img'
+              className="wallet-img"
               src={require('../../assets/images/wallet1.png')}
             />
-            <span className='text-color wallet-text'>
+            <span className="text-color wallet-text">
               {AllowededWallets.petra}
             </span>
           </div>
@@ -157,10 +161,10 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
             onClick={() => handleSelectWallet(AllowededWallets.blockto)}
           >
             <img
-              className='wallet-img'
+              className="wallet-img"
               src={require('../../assets/images/wallet2.png')}
             />
-            <span className='text-color wallet-text'>
+            <span className="text-color wallet-text">
               {AllowededWallets.blockto}
             </span>
           </div>
@@ -173,11 +177,11 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
             onClick={() => handleSelectWallet(AllowededWallets.martian)}
           >
             <img
-              className='wallet-img'
+              className="wallet-img"
               src={require('../../assets/images/wallet3.png')}
             />
 
-            <span className='text-color wallet-text'>
+            <span className="text-color wallet-text">
               {AllowededWallets.martian}
             </span>
           </div>
@@ -215,8 +219,8 @@ export const ConnectWallet = ({ handleClose, showModal }: IConnectWallet) => {
           </div> */}
         </div>
         <div
-          className='d-flex justify-content-center mt-10'
-          style={{ marginTop: 25 }}
+          className="d-flex justify-content-center mt-10"
+          style={{marginTop: 25}}
         >
           {/* <Button
             name='CONNECT WALLET'
