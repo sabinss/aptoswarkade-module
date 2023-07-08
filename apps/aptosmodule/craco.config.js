@@ -12,7 +12,7 @@ module.exports = {
     {
       plugin: cracoBabelLoader,
       options: {
-        includes: [resolvePackage('node_modules/aptos-warkade')],
+        includes: [resolvePackage('node_modules/aptoswarcade')],
       },
     },
   ],

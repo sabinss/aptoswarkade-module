@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Module from 'aptos-warkade/src';
+import Module from 'aptoswarcade/src';
 
 import {useWallet} from '@aptos-labs/wallet-adapter-react';
 
