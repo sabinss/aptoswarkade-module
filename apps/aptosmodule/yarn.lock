@@ -4001,10 +4001,10 @@ anymatch@^3.0.3, anymatch@~3.1.2:
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-2.0.0.tgz#52520b8ae5b569215b354efc0caa3fe1e45a8adc"
   integrity sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==
 
-aptos-warkade@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/aptos-warkade/-/aptos-warkade-0.1.5.tgz#9d6c276ff958b2ec76fba598a6e949a335956da5"
-  integrity sha512-0yRLvYFDDJy4LYmh7weoWo5jUxk/ok5UeSUSRULXtLO9fnubyh1XqY1MWZOaifKY8m/MHOBtADzJ6/nZ7mF2Hw==
+aptos-warkade@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/aptos-warkade/-/aptos-warkade-0.1.7.tgz#c62beee96bc3ed04d0272e2d43a8c9876e8fe52a"
+  integrity sha512-txHK+MXbN0YcXA2PUkiKC5ZU3o21cmjfOB0lDDwFvxXhnMJluGZVXyKgmfuoEuqXIvBezmOteSDxhASZ2DFtYg==
   dependencies:
     "@apollo/client" "^3.7.14"
     "@aptos-labs/wallet-adapter-react" "^1.1.0"

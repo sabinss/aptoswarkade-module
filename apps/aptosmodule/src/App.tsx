@@ -10,16 +10,21 @@ function App() {
   const {connect, account} = useWallet();
 
   useEffect(() => {
-    setAccountAddress(accountAddress);
-  }, [account]);
+    console.log('address', accountAddress);
+    setAccountAddress(account);
+  }, [account || accountAddress]);
+
   const setConnectModalOpen = (walletName: any) => {
     console.log('walletName', walletName);
-    // connect(walletName);
-    setAccountAddress('0xsjhdjfsdfd');
+    connect(walletName);
+    // setAccountAddress('0xsjhdjfsdfd');
   };
   return (
     <>
-      <Module setConnectModalOpen={setConnectModalOpen} />
+      <Module
+        setConnectModalOpen={setConnectModalOpen}
+        accountAddress={accountAddress}
+      />
     </>
   );
 }
