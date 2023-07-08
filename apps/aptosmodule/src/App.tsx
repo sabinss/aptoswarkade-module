@@ -1,12 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Module from 'aptoswarkade/src';
+import Module from 'aptos-warkade/src';
 
 function App() {
+  const setConnectModalOpen = (walletName: string) => {
+    console.log('walletName', walletName);
+  };
   return (
     <>
-      <Module />
+      <Module setConnectModalOpen={setConnectModalOpen} />
     </>
   );
 }

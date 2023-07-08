@@ -1,6 +1,6 @@
-const path = require("path");
-const fs = require("fs");
-const cracoBabelLoader = require("craco-babel-loader");
+const path = require('path');
+const fs = require('fs');
+const cracoBabelLoader = require('craco-babel-loader');
 
 // manage relative paths to packages
 const appDirectory = fs.realpathSync(process.cwd());
@@ -12,7 +12,7 @@ module.exports = {
     {
       plugin: cracoBabelLoader,
       options: {
-        includes: [resolvePackage("node_modules/aptoswarkade")],
+        includes: [resolvePackage('node_modules/aptos-warkade')],
       },
     },
   ],
