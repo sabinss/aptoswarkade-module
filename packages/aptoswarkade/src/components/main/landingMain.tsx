@@ -1,24 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Button } from '../UI/Button';
+import React, {useContext, useEffect, useState} from 'react';
+import {Button} from '../UI/Button';
 
-import { MintModal } from '../modal/MintModal';
+import {MintModal} from '../modal/MintModal';
 
-import { CustomModal } from '../index';
-import { AiOutlineClose } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import {CustomModal} from '../index';
+import {AiOutlineClose} from 'react-icons/ai';
+import {Link} from 'react-router-dom';
 
-import { Context as AuthContext } from '../../context/authContext';
-import { ConnectWallet } from '../modal/ConnectWallet';
-import { CollectionLoader } from '../common/CollectionLoader';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
-import { ReactComponent as HeartNil } from '../../assets/images/lifelinesvg/0.svg';
-import { ReactComponent as HeartLow } from '../../assets/images/lifelinesvg/one.svg';
-import { ReactComponent as HeartMedium } from '../../assets/images/lifelinesvg/2.svg';
-import { ReactComponent as HeartHalf } from '../../assets/images/lifelinesvg/3.svg';
+import {Context as AuthContext} from '../../context/authContext';
+import {ConnectWallet} from '../modal/ConnectWallet';
+import {CollectionLoader} from '../common/CollectionLoader';
+import {useWallet} from '@aptos-labs/wallet-adapter-react';
+import {ReactComponent as HeartNil} from '../../assets/images/lifelinesvg/0.svg';
+import {ReactComponent as HeartLow} from '../../assets/images/lifelinesvg/one.svg';
+import {ReactComponent as HeartMedium} from '../../assets/images/lifelinesvg/2.svg';
+import {ReactComponent as HeartHalf} from '../../assets/images/lifelinesvg/3.svg';
 
-import { ReactComponent as HeartFull } from '../../assets/images/lifelinesvg/4.svg';
-import { toast } from 'react-toastify';
-import { HASH_TOKEN } from '../../constant';
+import {ReactComponent as HeartFull} from '../../assets/images/lifelinesvg/4.svg';
+import {toast} from 'react-toastify';
+import {HASH_TOKEN} from '../../constant';
 
 export const LandingMain = () => {
   const {
@@ -41,7 +41,7 @@ export const LandingMain = () => {
     setMintModal(true);
   };
 
-  const { signAndSubmitTransaction } = useWallet();
+  const {signAndSubmitTransaction} = useWallet();
   useEffect(() => {}, [walletAccountInfo?.address, totalMinted]);
 
   const handleDeposit = async () => {
@@ -61,6 +61,7 @@ export const LandingMain = () => {
       });
       toast.success('Amount has been deposited successfully.');
     } catch (error: any) {
+      console.log(error);
       toast.error(error?.message ?? 'Deposit failed. Please try again!.');
     }
   };
@@ -75,31 +76,31 @@ export const LandingMain = () => {
     let imageDisplay = null;
     if (healthValue === 0) {
       return (
-        <div className='lifeline_heart nil-heart'>
+        <div className="lifeline_heart nil-heart">
           <HeartNil />
         </div>
       );
     } else if (healthValue >= 1 && healthValue <= 30) {
       return (
-        <div className='lifeline_heart low-heart'>
+        <div className="lifeline_heart low-heart">
           <HeartLow />
         </div>
       );
     } else if (healthValue >= 31 && healthValue <= 70) {
       return (
-        <div className='lifeline_heart medium-heart'>
+        <div className="lifeline_heart medium-heart">
           <HeartMedium />
         </div>
       );
     } else if (healthValue >= 71 && healthValue <= 99) {
       return (
-        <div className='lifeline_heart medium-heart'>
+        <div className="lifeline_heart medium-heart">
           <HeartHalf />
         </div>
       );
     } else if (healthValue >= 100) {
       return (
-        <div className='lifeline_heart full-heart'>
+        <div className="lifeline_heart full-heart">
           <HeartFull />
         </div>
       );
@@ -108,11 +109,11 @@ export const LandingMain = () => {
 
   return (
     <main>
-      <section className='index-home-section'>
-        <div className='banner-content'>
-          <div className='custom-container'>
-            <div className='text-content'>
-              <div className='banner-title'>
+      <section className="index-home-section">
+        <div className="banner-content">
+          <div className="custom-container">
+            <div className="text-content">
+              <div className="banner-title">
                 <h1>Mint to defeat</h1>
                 <h1>
                   <span>The Darklord</span>
@@ -120,116 +121,113 @@ export const LandingMain = () => {
               </div>
             </div>
           </div>
-          <div className='banner-bottom '>
-            <div className='container-fluid'>
-              <div className='row'>
-                <div className='col-lg-9 position-relative'>
-                  <div className='bottom-content'>
-                    <div className='bottom-title text-center'>
+          <div className="banner-bottom ">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-lg-9 position-relative">
+                  <div className="bottom-content">
+                    <div className="bottom-title text-center">
                       <h6>Aptos Warcades</h6>
                     </div>
-                    <div className='d-flex banner-image-sprite'>
-                      <div className='single-image-holder'>
+                    <div className="d-flex banner-image-sprite">
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man1.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man2.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man3.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man4.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man5.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man6.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man7.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man8.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man9.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='single-image-holder'>
+                      <div className="single-image-holder">
                         <img
                           src={require('../../assets/images/man10.jpeg')}
-                          alt=''
+                          alt=""
                         />
                       </div>
                     </div>
                   </div>
-                  <div className='below-bottom-content d-lg-flex align-align-items-start'>
-                  
-                    <div className='bottom-left  d-inline-block'>
-                    <Link to={'/collections'}>
-                      <div className='icon-grp-text'>
-                        <ul className='list-unstyled d-flex icon-grp'>
-                          <li>
-                            <div className='icon-holder'>
-                              <img
-                                src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
-                                alt=''
-                              />
-                            </div>
-                          </li>
-                          <li>
-                            <div className='icon-holder'>
-                              <img
-                                src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
-                                alt=''
-                              />
-                            </div>
-                          </li>
-                          <li>
-                            <div className='icon-holder'>
-                              <img
-                                src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
-                                alt=''
-                              />
-                            </div>
-                          </li>
-                        </ul>
-                        <h6>
-                          My Collection
-                        </h6>
-                      </div>
+                  <div className="below-bottom-content d-lg-flex align-align-items-start">
+                    <div className="bottom-left  d-inline-block">
+                      <Link to={'/collections'}>
+                        <div className="icon-grp-text">
+                          <ul className="list-unstyled d-flex icon-grp">
+                            <li>
+                              <div className="icon-holder">
+                                <img
+                                  src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
+                                  alt=""
+                                />
+                              </div>
+                            </li>
+                            <li>
+                              <div className="icon-holder">
+                                <img
+                                  src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
+                                  alt=""
+                                />
+                              </div>
+                            </li>
+                            <li>
+                              <div className="icon-holder">
+                                <img
+                                  src={require('../../assets/images/WarcadiaCoinAnimation.gif')}
+                                  alt=""
+                                />
+                              </div>
+                            </li>
+                          </ul>
+                          <h6>My Collection</h6>
+                        </div>
                       </Link>
                     </div>
 
-                    <div className='bottom-line-grp  d-inline-block'>
+                    <div className="bottom-line-grp  d-inline-block">
                       <span></span>
                       <span></span>
                       <span></span>
@@ -242,18 +240,18 @@ export const LandingMain = () => {
                     </div>
                   </div>
                 </div>
-                <div className='col-lg-3'>
-                  <div className='bottom-right'>
-                    <div className='img-btn-wrap'>
-                      <div className='image-holder fire-back'>
+                <div className="col-lg-3">
+                  <div className="bottom-right">
+                    <div className="img-btn-wrap">
+                      <div className="image-holder fire-back">
                         <img
                           src={require('../../assets/images/DarkLordAnimation.gif')}
-                          alt=''
+                          alt=""
                         />
                       </div>
-                      <div className='btn-wrap d-flex'>
+                      <div className="btn-wrap d-flex">
                         <Button
-                          name='Mint'
+                          name="Mint"
                           className={['wr-primary-theme-btn']}
                           onClick={() => {
                             // if (+mintRemaining?.totalBalance < 0) {
@@ -278,7 +276,7 @@ export const LandingMain = () => {
                       </div>
                     </div>
                     {isWalletConnected && walletAccountInfo && (
-                      <div className='img-flamesword'>
+                      <div className="img-flamesword">
                         {displayHeartImageBasedOnHealth()}
                       </div>
                     )}
@@ -287,9 +285,9 @@ export const LandingMain = () => {
               </div>
             </div>
           </div>
-          <div className='total-mint-detail '>
+          <div className="total-mint-detail ">
             {isWalletConnected && walletAccountInfo && (
-              <ul className='list-unstyled'>
+              <ul className="list-unstyled">
                 <li>
                   <strong>Health : </strong>
                   <span>
@@ -303,76 +301,76 @@ export const LandingMain = () => {
               </ul>
             )}
           </div>
-          <div className='brick-imgt '>
-            <div className='brick-icon-wrap'>
-              <div className='brick-icon'>
+          <div className="brick-imgt ">
+            <div className="brick-icon-wrap">
+              <div className="brick-icon">
                 <img
                   src={require('../../assets/images/Rectangle37.png')}
-                  alt=''
+                  alt=""
                 />
               </div>
-              <div className='brick-icon'>
+              <div className="brick-icon">
                 <img
                   src={require('../../assets/images/Rectangle37.png')}
-                  alt=''
+                  alt=""
                 />
               </div>
-              <div className='brick-icon'>
+              <div className="brick-icon">
                 <img
                   src={require('../../assets/images/Rectangle37.png')}
-                  alt=''
+                  alt=""
                 />
               </div>
             </div>
-            <div className='brick-flame-wrap'>
-              <div className='img-flame-wrap'>
-                <div className='sword-wrap'>
+            <div className="brick-flame-wrap">
+              <div className="img-flame-wrap">
+                <div className="sword-wrap">
                   <img
                     src={require('../../assets/images/Burning-Sword.gif')}
-                    alt=''
+                    alt=""
                   />
                 </div>
               </div>
-              <div className='brick-left'>
-                <div className='brick-icon-wrap'>
-                  <div className='brick-icon'>
+              <div className="brick-left">
+                <div className="brick-icon-wrap">
+                  <div className="brick-icon">
                     <img
                       src={require('../../assets/images/Rectangle37.png')}
-                      alt=''
+                      alt=""
                     />
                   </div>
-                  <div className='brick-icon'>
+                  <div className="brick-icon">
                     <img
                       src={require('../../assets/images/Rectangle37.png')}
-                      alt=''
-                    />
-                  </div>
-                </div>
-                <div className='brick-icon-wrap'>
-                  <div className='brick-icon'>
-                    <img
-                      src={require('../../assets/images/Rectangle37.png')}
-                      alt=''
-                    />
-                  </div>
-                  <div className='brick-icon'>
-                    <img
-                      src={require('../../assets/images/Rectangle37.png')}
-                      alt=''
+                      alt=""
                     />
                   </div>
                 </div>
-                <div className='brick-icon-wrap'>
-                  <div className='brick-icon'>
+                <div className="brick-icon-wrap">
+                  <div className="brick-icon">
                     <img
                       src={require('../../assets/images/Rectangle37.png')}
-                      alt=''
+                      alt=""
                     />
                   </div>
-                  <div className='brick-icon'>
+                  <div className="brick-icon">
                     <img
                       src={require('../../assets/images/Rectangle37.png')}
-                      alt=''
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className="brick-icon-wrap">
+                  <div className="brick-icon">
+                    <img
+                      src={require('../../assets/images/Rectangle37.png')}
+                      alt=""
+                    />
+                  </div>
+                  <div className="brick-icon">
+                    <img
+                      src={require('../../assets/images/Rectangle37.png')}
+                      alt=""
                     />
                   </div>
                 </div>
@@ -402,103 +400,103 @@ export const LandingMain = () => {
             setBalanceModal(false);
           }}
         >
-          <div className='deposit-modal'>
-            <div className='modal-header'>
-              <h4 className='mb-3 text-center'>Deposit Now</h4>
+          <div className="deposit-modal">
+            <div className="modal-header">
+              <h4 className="mb-3 text-center">Deposit Now</h4>
               <div
                 onClick={() => {
                   setBalanceModal(false);
                 }}
-                className='close'
+                className="close"
               >
                 <AiOutlineClose
-                  style={{ color: '#E7D08C', fontWeight: 'bold', fontSize: 20 }}
+                  style={{color: '#E7D08C', fontWeight: 'bold', fontSize: 20}}
                 />
               </div>
             </div>
-            <div className='modal-body'>
-              <form action=''>
-                <div className='row w-100'>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+            <div className="modal-body">
+              <form action="">
+                <div className="row w-100">
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.1'
+                        type="radio"
+                        name="amnt"
+                        value="0.1"
                         onClick={() => setDepositAmount('0.1')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.1' className='apt-btn large'>
+                      <label htmlFor="0.1" className="apt-btn large">
                         0.1
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.2'
+                        type="radio"
+                        name="amnt"
+                        value="0.2"
                         onClick={() => setDepositAmount('0.2')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.2' className='apt-btn large'>
+                      <label htmlFor="0.2" className="apt-btn large">
                         0.2
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.3'
+                        type="radio"
+                        name="amnt"
+                        value="0.3"
                         onClick={() => setDepositAmount('0.3')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.3' className='apt-btn large'>
+                      <label htmlFor="0.3" className="apt-btn large">
                         0.3
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.5'
+                        type="radio"
+                        name="amnt"
+                        value="0.5"
                         onClick={() => setDepositAmount('0.5')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.5' className='apt-btn large'>
+                      <label htmlFor="0.5" className="apt-btn large">
                         0.5
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.7'
+                        type="radio"
+                        name="amnt"
+                        value="0.7"
                         onClick={() => setDepositAmount('0.7')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.7' className='apt-btn large'>
+                      <label htmlFor="0.7" className="apt-btn large">
                         0.7
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='1.0'
+                        type="radio"
+                        name="amnt"
+                        value="1.0"
                         onClick={() => setDepositAmount('1.0')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='1.0' className='apt-btn large'>
+                      <label htmlFor="1.0" className="apt-btn large">
                         1.0
                       </label>
                     </div>
@@ -506,7 +504,7 @@ export const LandingMain = () => {
                 </div>
               </form>
               <Button
-                name='Deposit now'
+                name="Deposit now"
                 onClick={() => {
                   handleDeposit();
                 }}
