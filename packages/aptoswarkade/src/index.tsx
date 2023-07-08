@@ -85,7 +85,7 @@ const AptosWarkade = (props: IAptosWarkade) => {
   );
 };
 
-root.render(<AptosWarkade setConnectModalOpen={setConnectModalOpen} />);
+// root.render(<AptosWarkade setConnectModalOpen={setConnectModalOpen} />);
 
-// export default AptosWarkade;
+export default AptosWarkade;
 // "aptoswarkade": "file:../../packages/aptoswarkade",
