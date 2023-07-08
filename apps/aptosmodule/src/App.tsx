@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Module from 'aptos-warkade/src';
 
+import {useWallet} from '@aptos-labs/wallet-adapter-react';
+
 function App() {
-  const setConnectModalOpen = (walletName: string) => {
+  const [accountAddress, setAccountAddress] = useState<any>(null);
+  const {connect, account} = useWallet();
+
+  useEffect(() => {
+    setAccountAddress(accountAddress);
+  }, [account]);
+  const setConnectModalOpen = (walletName: any) => {
     console.log('walletName', walletName);
+    // connect(walletName);
+    setAccountAddress('0xsjhdjfsdfd');
   };
   return (
     <>
