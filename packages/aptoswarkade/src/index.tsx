@@ -76,7 +76,7 @@ const AptosWarkade = (props: IAptosWarkade) => {
             setConnectModalOpen={setConnectModalOpen}
             accountAddress={accountAddress}
           >
-            <WarKade />
+            <WarKade accountAddress={accountAddress} />
           </PropsProvider>
           <ToastContainer />
         </AptosWalletAdapterProvider>

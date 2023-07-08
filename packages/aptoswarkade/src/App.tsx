@@ -10,10 +10,10 @@ import {Collections} from './pages/Collection';
 
 import {AppInit} from './hoc/AppInit';
 
-function WarKade() {
+function WarKade({accountAddress}: any) {
   return (
     <AuthProvider>
-      <AppInit>
+      <AppInit accountAddress={accountAddress}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />}></Route>

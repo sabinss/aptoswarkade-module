@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { getLocalStorageItem } from '../utils/localstorageService';
-import { Context as AuthContext } from '../context';
+import React, {useContext, useEffect, useState} from 'react';
+import {getLocalStorageItem} from '../utils/localstorageService';
+import {Context as AuthContext} from '../context';
 
-export const AppInit = ({ children }: any) => {
+export const AppInit = ({children, accountAddress}: any) => {
   const [appInitialize, setAppInitialize] = useState(false);
 
   const {
@@ -12,6 +12,13 @@ export const AppInit = ({ children }: any) => {
     fetchRemainingMint,
     fetchTotalMint,
   } = useContext<any>(AuthContext);
+  useEffect(() => {
+    if (accountAddress) {
+      connetAptosWallet(accountAddress, () => {
+        setLoading(false);
+      });
+    }
+  }, [accountAddress]);
 
   useEffect(() => {
     setLoading(true);
