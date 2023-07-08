@@ -8,18 +8,18 @@ import reportWebVitals from './reportWebVitals';
 import './assets/styles/index.scss';
 
 // wallets
-import { PetraWallet } from 'petra-plugin-wallet-adapter';
-import { FewchaWallet } from 'fewcha-plugin-wallet-adapter';
-import { BloctoWallet } from '@blocto/aptos-wallet-adapter-plugin';
-import { MartianWallet } from '@martianwallet/aptos-wallet-adapter';
-import { WalletCore, NetworkName } from '@aptos-labs/wallet-adapter-core';
+import {PetraWallet} from 'petra-plugin-wallet-adapter';
+import {FewchaWallet} from 'fewcha-plugin-wallet-adapter';
+import {BloctoWallet} from '@blocto/aptos-wallet-adapter-plugin';
+import {MartianWallet} from '@martianwallet/aptos-wallet-adapter';
+import {WalletCore, NetworkName} from '@aptos-labs/wallet-adapter-core';
 // import { PontemWalletAdapter } from '@pontem/aptos-wallet-adapter';
-import { SpikaWallet } from '@spika/aptos-plugin';
+import {SpikaWallet} from '@spika/aptos-plugin';
 
-import { AptosWalletAdapterProvider } from '@aptos-labs/wallet-adapter-react';
+import {AptosWalletAdapterProvider} from '@aptos-labs/wallet-adapter-react';
 // import ErrorBoundary from './components/Errorboundary';
-import { ErrorBoundary } from 'react-error-boundary';
-import { ToastContainer } from 'react-toastify';
+import {ErrorBoundary} from 'react-error-boundary';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 let network = NetworkName.Testnet;
@@ -33,7 +33,7 @@ const wallets: any = [
   new PetraWallet(),
   new BloctoWallet({
     network: network,
-    bloctoAppId: "84503da4-7d0f-4ced-b004-ecd81bfc333b",
+    bloctoAppId: '84503da4-7d0f-4ced-b004-ecd81bfc333b',
   }),
   new MartianWallet(),
   new SpikaWallet(),
@@ -41,7 +41,7 @@ const wallets: any = [
 
 export const aptosWallet = new WalletCore(wallets);
 
-function ErrorFallback({ error, resetErrorBoundary }: any) {
+function ErrorFallback({error, resetErrorBoundary}: any) {
   return (
     <div>
       <h2>Something went wrong:</h2>
@@ -50,7 +50,7 @@ function ErrorFallback({ error, resetErrorBoundary }: any) {
     </div>
   );
 }
-const Main = () => (
+const AptosWarkade = () => (
   <React.StrictMode>
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
@@ -61,5 +61,6 @@ const Main = () => (
   </React.StrictMode>
 );
 
+// root.render(<AptosWarkade />);
 
-export default Main;
+export default AptosWarkade;

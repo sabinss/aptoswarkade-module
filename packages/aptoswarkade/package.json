@@ -1,6 +1,9 @@
 {
-  "name": "aptoswarkade",
-  "version": "0.2.0",
+  "name": "aptos-warkade",
+  "version": "0.1.4",
+  "description":"Aptos Warkade",
+  "type":"commonjs",
+  "main":"src/index.tsx",
   "dependencies": {
     "@apollo/client": "^3.7.14",
     "@aptos-labs/wallet-adapter-react": "^1.1.0",
