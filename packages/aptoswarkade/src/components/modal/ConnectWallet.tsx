@@ -103,9 +103,9 @@ export const ConnectWallet = ({handleClose, showModal}: IConnectWallet) => {
       // connect(openSelectedWallet);
       setConnectModalOpen(openSelectedWallet);
       // const wallet = new WalletCore(wallets);
-      connetAptosWallet(account, () => {
-        setLoading(false);
-      });
+      // connetAptosWallet(account, () => {
+      //   setLoading(false);
+      // });
       handleClose();
     } catch (e) {
       console.log(e);

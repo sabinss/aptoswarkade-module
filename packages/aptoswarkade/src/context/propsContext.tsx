@@ -1,4 +1,5 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import {Context as AuthContext} from './authContext';
 
 interface PropStateType {
   accountAddress?: string | null;
@@ -16,6 +17,7 @@ function PropsProvider({
   transaction,
 }: any) {
   console.log('props provider');
+
   return (
     <PropsContext.Provider
       value={{

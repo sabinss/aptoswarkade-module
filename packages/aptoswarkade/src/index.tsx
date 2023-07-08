@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ReactDOM from 'react-dom/client';
@@ -23,6 +23,7 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {PropsProvider} from './context/propsContext';
+import {Context as AuthContext} from './context';
 
 let network = NetworkName.Testnet;
 // let network = NetworkName.Mainnet;
@@ -55,6 +56,7 @@ function ErrorFallback({error, resetErrorBoundary}: any) {
 
 interface IAptosWarkade {
   setConnectModalOpen: (walletName: string) => any;
+  accountAddress?: any | null;
 }
 
 const setConnectModalOpen = (walletName: string) => {
@@ -63,18 +65,25 @@ const setConnectModalOpen = (walletName: string) => {
   console.log('walletName', walletName);
 };
 
-const AptosWarkade = (props: IAptosWarkade) => (
-  <React.StrictMode>
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
-        <PropsProvider setConnectModalOpen={props.setConnectModalOpen}>
-          <WarKade />
-        </PropsProvider>
-        <ToastContainer />
-      </AptosWalletAdapterProvider>
-    </ErrorBoundary>
-  </React.StrictMode>
-);
+const AptosWarkade = (props: IAptosWarkade) => {
+  const {accountAddress, setConnectModalOpen} = props;
+
+  return (
+    <React.StrictMode>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
+          <PropsProvider
+            setConnectModalOpen={setConnectModalOpen}
+            accountAddress={accountAddress}
+          >
+            <WarKade />
+          </PropsProvider>
+          <ToastContainer />
+        </AptosWalletAdapterProvider>
+      </ErrorBoundary>
+    </React.StrictMode>
+  );
+};
 
 // root.render(<AptosWarkade setConnectModalOpen={setConnectModalOpen} />);
 

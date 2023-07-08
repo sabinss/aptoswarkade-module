@@ -1,21 +1,22 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 // import HeaderLogo from '../../assets/svg/Logo.svg';
 import HeaderLogo from '../../assets/images/NewHeader.png';
-import { Button } from '../UI/Button';
-import { Link } from 'react-router-dom';
-import { Context as AuthContext } from '../../context';
-import { truncateStringInBetween } from '../../utils/stringHelper';
-import { DisconnectWallet } from '../modal/DisconnectWallet';
-import { CustomModal } from '../modal/CustomModal';
-import { AiOutlineClose } from 'react-icons/ai';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
-import { HASH_TOKEN } from '../../constant';
-import { toast } from 'react-toastify';
+import {Button} from '../UI/Button';
+import {Link} from 'react-router-dom';
+import {Context as AuthContext} from '../../context';
+import {PropsContext} from '../../context/propsContext';
+import {truncateStringInBetween} from '../../utils/stringHelper';
+import {DisconnectWallet} from '../modal/DisconnectWallet';
+import {CustomModal} from '../modal/CustomModal';
+import {AiOutlineClose} from 'react-icons/ai';
+import {useWallet} from '@aptos-labs/wallet-adapter-react';
+import {HASH_TOKEN} from '../../constant';
+import {toast} from 'react-toastify';
 interface IHeader {
   handleConnectWallet: () => void;
 }
 
-export const Header = ({ handleConnectWallet }: IHeader) => {
+export const Header = ({handleConnectWallet}: IHeader) => {
   const [openDisconnetWallet, setDisconnectWallet] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const {
@@ -25,19 +26,30 @@ export const Header = ({ handleConnectWallet }: IHeader) => {
       mintRemaining,
       walletConnetLoading: loading,
     },
+    connetAptosWallet,
     disconnectAptosWallet,
     fetchRemainingMint,
     setLoading,
   } = useContext<any>(AuthContext);
+
+  const {accountAddress} = useContext<any>(PropsContext);
   const [balanceModal, setBalanceModal] = useState(false);
   // const [loading, setLoading] = useState(false);
   const [depositedAmount, setDepositedAmount] = useState<null | number>(null);
 
-  const { signAndSubmitTransaction, disconnect } = useWallet();
+  const {signAndSubmitTransaction, disconnect} = useWallet();
 
   const handleConnecting = () => {
     setConnecting(true);
   };
+
+  useEffect(() => {
+    if (accountAddress) {
+      connetAptosWallet(accountAddress, () => {
+        setLoading(false);
+      });
+    }
+  }, [accountAddress]);
 
   useEffect(() => {
     fetchRemainingMint(walletAccountInfo?.address);
@@ -78,17 +90,17 @@ export const Header = ({ handleConnectWallet }: IHeader) => {
 
   return (
     <header>
-      <div className='container-fluid'>
-        <div className='row '>
-          <div className='col-lg-4 col-sm-6 col-12'>
-            <div className='header_logo px-5 w-lg-75 mb-2'>
+      <div className="container-fluid">
+        <div className="row ">
+          <div className="col-lg-4 col-sm-6 col-12">
+            <div className="header_logo px-5 w-lg-75 mb-2">
               <Link to={'/'}>
-                <img src={HeaderLogo} alt='HeaderLogo' />
+                <img src={HeaderLogo} alt="HeaderLogo" />
               </Link>
             </div>
           </div>
-          <div className='col-lg-8 col-sm-6 col-12'>
-            <div className='head-right float-lg-end  float-sm-none px-lg--5 d-flex'>
+          <div className="col-lg-8 col-sm-6 col-12">
+            <div className="head-right float-lg-end  float-sm-none px-lg--5 d-flex">
               {isWalletConnected && walletAccountInfo && (
                 <Button
                   name={mintRemaining?.totalBalance || '00.00'}
@@ -157,103 +169,103 @@ export const Header = ({ handleConnectWallet }: IHeader) => {
             setBalanceModal(false);
           }}
         >
-          <div className='deposit-modal'>
-            <div className='modal-header'>
-              <h4 className='mb-3 text-center'>Deposit Now</h4>
+          <div className="deposit-modal">
+            <div className="modal-header">
+              <h4 className="mb-3 text-center">Deposit Now</h4>
               <div
                 onClick={() => {
                   setBalanceModal(false);
                 }}
-                className='close'
+                className="close"
               >
                 <AiOutlineClose
-                  style={{ color: '#E7D08C', fontWeight: 'bold', fontSize: 20 }}
+                  style={{color: '#E7D08C', fontWeight: 'bold', fontSize: 20}}
                 />
               </div>
             </div>
-            <div className='modal-body'>
-              <form action=''>
-                <div className='row w-100'>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+            <div className="modal-body">
+              <form action="">
+                <div className="row w-100">
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.1'
+                        type="radio"
+                        name="amnt"
+                        value="0.1"
                         onClick={() => setDepositAmount('0.1')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.1' className='apt-btn large'>
+                      <label htmlFor="0.1" className="apt-btn large">
                         0.1
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.2'
+                        type="radio"
+                        name="amnt"
+                        value="0.2"
                         onClick={() => setDepositAmount('0.2')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.2' className='apt-btn large'>
+                      <label htmlFor="0.2" className="apt-btn large">
                         0.2
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.3'
+                        type="radio"
+                        name="amnt"
+                        value="0.3"
                         onClick={() => setDepositAmount('0.3')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.3' className='apt-btn large'>
+                      <label htmlFor="0.3" className="apt-btn large">
                         0.3
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.5'
+                        type="radio"
+                        name="amnt"
+                        value="0.5"
                         onClick={() => setDepositAmount('0.5')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.5' className='apt-btn large'>
+                      <label htmlFor="0.5" className="apt-btn large">
                         0.5
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='0.7'
+                        type="radio"
+                        name="amnt"
+                        value="0.7"
                         onClick={() => setDepositAmount('0.7')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='0.7' className='apt-btn large'>
+                      <label htmlFor="0.7" className="apt-btn large">
                         0.7
                       </label>
                     </div>
                   </div>
-                  <div className='col-md-4 col-lg-4 col-sm-6 col-6'>
-                    <div className='form-grp depo_selector'>
+                  <div className="col-md-4 col-lg-4 col-sm-6 col-6">
+                    <div className="form-grp depo_selector">
                       <input
-                        type='radio'
-                        name='amnt'
-                        value='1.0'
+                        type="radio"
+                        name="amnt"
+                        value="1.0"
                         onClick={() => setDepositAmount('1.0')}
-                        className='hidden-check'
+                        className="hidden-check"
                       />
-                      <label htmlFor='1.0' className='apt-btn large'>
+                      <label htmlFor="1.0" className="apt-btn large">
                         1.0
                       </label>
                     </div>
@@ -261,7 +273,7 @@ export const Header = ({ handleConnectWallet }: IHeader) => {
                 </div>
               </form>
               <Button
-                name='Deposit now'
+                name="Deposit now"
                 onClick={() => {
                   handleDeposit();
                 }}
